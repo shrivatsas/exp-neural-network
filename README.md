@@ -37,3 +37,7 @@ We'll use Python's NumPy library for numerical operations. Here's a step-by-step
 3. Implement the Forward Pass Function
 4. Implement the Backward Pass Function (Backpropagation)
 5. Train the Network Using a Simple Dataset
+
+#### Reflection
+
+Slower learning rate with more iterations gave better output.

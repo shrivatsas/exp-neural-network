@@ -1,17 +1,8 @@
 import numpy as np
+from setup import *
 
 # Set a random seed for reproducibility
 np.random.seed(42)
-
-input_size = 2
-hidden_size = 4
-output_size = 1
-
-# Initialize weights and biases
-weights_input_to_hidden = np.random.randn(input_size, hidden_size)
-weights_hidden_to_output = np.random.randn(hidden_size, output_size)
-bias_hidden = np.zeros((1, hidden_size))
-bias_output = np.zeros(((1, output_size)))
 
 # The sigmoid function as our simple activation function. The function maps any input to a value between 0 and 1, making it useful for binary classification.
 def sigmoid(x: float):
@@ -32,7 +23,8 @@ def forward_pass(input_data):
 
 # Backpropagation involves calculating the error in the output and then propagating this error backward through the network to update the weights.
 def backward_pass(input_data, actual_output, hidden_layer_output, predicted_output,
-                  weights_hidden_to_output, weights_input_to_hidden, bias_output, bias_hidden):
+                  weights_hidden_to_output, weights_input_to_hidden, bias_output, bias_hidden,
+                  learning_rate):
     error = actual_output - predicted_output
     d_predicted_output = error * sigmoid_derivative(predicted_output)
 
@@ -45,21 +37,21 @@ def backward_pass(input_data, actual_output, hidden_layer_output, predicted_outp
     bias_hidden += np.sum(d_hidden_layer, axis=0, keepdims=True) * learning_rate
 
 # Simple training loop
-# Example dataset
-input_data = np.array([[0,0], [0,1], [1,0], [1,1]])
-actual_output = np.array([[0], [1], [1], [0]])
 
-# Training parameters
-learning_rate = 0.11
-epochs = 50000
+if __name__ == '__main__':
+    # Example dataset
+    input_data = np.array([[0,0], [0,1], [1,0], [1,1]])
+    actual_output = np.array([[0], [1], [1], [0]])
 
-for epoch in range(epochs):
-    hidden_layer_output, predicted_output = forward_pass(input_data)
-    backward_pass(input_data, actual_output, hidden_layer_output, predicted_output,
-                  weights_hidden_to_output, weights_input_to_hidden, bias_output, bias_hidden)
+    # Training parameters
+    learning_rate = 0.11
+    epochs = 50000
 
-    if epoch % 1000 == 0:
-        loss = np.mean(np.square(actual_output - predicted_output))
-        print(f"Epoch {epoch} Loss: {loss}")
+    for epoch in range(epochs):
+        hidden_layer_output, predicted_output = forward_pass(input_data)
+        backward_pass(input_data, actual_output, hidden_layer_output, predicted_output,
+                    weights_hidden_to_output, weights_input_to_hidden, bias_output, bias_hidden, learning_rate)
 
-print(predicted_output)
+        if epoch % 1000 == 0:
+            loss = np.mean(np.square(actual_output - predicted_output))
+            print(f"Epoch {epoch} Loss: {loss}")
