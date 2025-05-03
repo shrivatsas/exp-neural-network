@@ -7,7 +7,7 @@ A neural network consists of 3 neuron layers
 2. Hidden
 3. Output
 
-During a training the network learns and adjusts **Weights** and **Biases**, They adjust the strength of the connections.
+During training the network learns and adjusts **Weights** and **Biases**, They adjust the strength of the connections.
 
 An **activation function** is a mathematical function applied to the output of each neuron. This introduces non-linearity into the model.
 
@@ -40,4 +40,29 @@ We'll use Python's NumPy library for numerical operations. Here's a step-by-step
 
 #### Reflection
 
-Slower learning rate with more iterations gave better output.
+A slower learning rate with more iterations gave better output.
+
+### 2. Sequence models
+
+Sequence models are a type of model that is particularly adept at processing sequences of data. 
+
+Temporal dependency, Sequence models are designed to handle data where the temporal order matters.
+Recurrent Neural Networks, process sequences by maintaining a 'memory' (hidden state) of previous elements. This allows them to make predictions based on both the current input and what they've processed so far.
+Long Short-term memory, A special kind of RNN designed to solve the problem of long-term dependencies.
+Gated recurrent units, Similar to LSTMs, GRUs are a variation of RNNs that aim to solve the long-term dependency problem but with a simpler structure than LSTMs.
+Attention mechanisms and Transformers, not RNNs, allow models to focus on different parts of the input sequence when producing each part of the output.
+Sequence-to-Sequence Models, models are used for tasks where the input and output are both sequences
+
+The backpropagation through time (BPTT) becomes complex for RNN compared to basic NNs
+    Decide on a specific task for your RNN (e.g., sequence classification, language modeling).
+    Prepare or create a dataset suitable for your chosen task.
+    Implement the backward pass (BPTT) for training.
+    Define a loss function and optimize the weights using gradient descent or a variant.
+
+Select a task: Character-level language modeling. Train to predict the next character in a sequence given previous characters.
+
+### 3. Attention mechanisms
+
+
+### 4. Natural Language Processing
+
